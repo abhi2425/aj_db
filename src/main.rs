@@ -126,13 +126,7 @@ impl Database {
 
     // FIND VALUE BY KEY NAME
     fn find(&self, key: &String) -> Result<String, std::io::Error> {
-        let data = Self::read()?;
-
-        let mut map = HashMap::new();
-        for (key, value) in data {
-            map.insert(key, value);
-        }
-        let value = match map.get(key) {
+        let value = match self.map.get(key) {
             Some(value) => value,
             None => "",
         };
